@@ -36,3 +36,24 @@ ExpressJS supports various HTTP methods to handle different types of client requ
     2. Handling a POST Request:
         - Used to send data to the server and create a new resource.
         - Requires middleware (express.json()) to handle JSON input.
+    3. Handling a PUT Request:
+        - Used to update an existing resource.
+        - Uses route parameters (req.params) to identify the resource.
+    4. Handling a DELETE Request:
+        - Used to remove an existing resource from server.
+
+## Middleware in ExpressJS
+
+Middleware functions in ExpressJS are functions that execute before the final request handler. They can:
+
+    • Modify the request (req) and response (res) objects
+
+    • End the request-response cycle
+
+    • Call the next middleware function in the stack
+
+## Middleware Workflow
+
+    Client Request → Middleware → Route Handler → Response to Client
+
+Middleware is essential for logging, authentication, request parsing, error handling, etc.
