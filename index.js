@@ -1,11 +1,14 @@
 import express from "express";
 import multer from "multer";
 import { storage } from "./config/multer.js";
-// import router from "./route.js";
+import { connectDB } from "./config/db.js";
+import router from "./routes/userRoutes.js";
 
 const app = express();
 
 const upload = multer({ storage, limits: { fileSize: 1024000 } });
+
+await connectDB();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -54,27 +57,7 @@ const port = 4000;
 // app.use("/public", express.static("public"));
 // app.use("/images", express.static("images"));
 
-app.get("/", (req, res) => {
-  // const userName = "Adam";
-  // res.render("index.ejs", { userName });
-  res.send("Hello, World!");
-});
-
-app.post("/form", (req, res) => {
-  const { email } = req.body;
-  res.json({
-    message: `Welcome, ${email}!`,
-  });
-});
-
-app.use((err, req, res, next) => {
-  console.error(err.message);
-  res.status(500).json({
-    message: err.message || "Internal Server Error!",
-  });
-});
-
-// app.use("/users", router);
+app.use("/users", router);
 
 // app.get("/users/:name/:id([0-9]{5})", (req, res) => {
 //   const { name, id } = req.params;
@@ -99,41 +82,25 @@ app.use((err, req, res, next) => {
 // });
 
 // Catch all invalid routes
+
+app.get("/", (req, res) => {
+  // const userName = "Adam";
+  // res.render("index.ejs", { userName });
+  res.send("Hello, World!");
+});
+
+app.use((err, req, res, next) => {
+  console.error(err.message);
+  res.status(500).json({
+    message: err.message || "Internal Server Error!",
+  });
+});
+
 app.get("*", (req, res) => {
   res.status(404).json({
     message: "Route not found!",
   });
 });
-
-// app.post("/users", (req, res) => {
-//   const { username, email } = req.body;
-//   res.json({
-//     message: `User ${username} created successfully!`,
-//     data: {
-//       username,
-//       email,
-//     },
-//   });
-// });
-
-// app.put("/users/:userId", (req, res) => {
-//   const userId = req.params.userId;
-//   const { username, email } = req.body;
-//   res.json({
-//     message: `User ${userId} updated successfully!`,
-//     data: {
-//       username,
-//       email,
-//     },
-//   });
-// });
-
-// app.delete("/users/:userId", (req, res) => {
-//   const userId = req.params.userId;
-//   res.json({
-//     message: `User ${userId} deleted successfully!`,
-//   });
-// });
 
 // start server
 app.listen(port, () => {

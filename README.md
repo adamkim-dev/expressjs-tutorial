@@ -78,3 +78,19 @@ A templating engine generates dynamic HTML by embedding JavaScript-like logic wi
     - Uses variables, loops, conditionals, and functions to generate content.
 
 In **ExpressJS**, templating engines are used to render views dynamically by integrating them into the application.
+
+## ExpressJS - Database Integration ( MongoDB & Mongoose)
+
+    MongoDB - MongoDB is a popular, open-source NoSQL database that stores data in flexible, JSON-like format called BSON (Binary JSON).
+
+    - Document-Oriented: Stores data in documents with dynamic schemas.
+    - High-Performance: Designed for scalability and high throughput.
+    - Flexible Schema: Allows for dynamic and evolving data structures.
+    - Scalability: Supports horizontal scaling with sharding.
+
+    Mongoose - Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It makes easier to interact with and manipulate MongoDB documents in a more structured way.
+
+    - Schema-Based: Defines data structures using schemas.
+    - Validation: Provides validation and sanitization for data.
+    - Middleware: Supports middleware for pre and post operations.
+    - Built-In Methods: Offers built-in methods for CRUD operations.
