@@ -94,3 +94,44 @@ In **ExpressJS**, templating engines are used to render views dynamically by int
     - Validation: Provides validation and sanitization for data.
     - Middleware: Supports middleware for pre and post operations.
     - Built-In Methods: Offers built-in methods for CRUD operations.
+
+## ExpressJS - Cookies
+
+    Cookies are small data files sent from the server to the client, stored on the client's browser. They are sent
+    back with every request to the server
+
+    Uses of Cookies
+        - Session Management - Maintaining user login sessions.
+        - Personalization - Enhancing user experience with recommendations.
+        - User Tracking - Monitoring user behavior on the website.
+
+## ExpressJS - Sessions
+
+    HTTP is stateless, meaning each request is independent and does not retain user data
+
+    To persist data between requests, we can use:
+        - Cookies - Stored on the client, visible to users.
+        - URL Parameters - Can be manipulated and exposed
+
+    Sessions solve this problem by storing user data on the server and associating it with a unique session ID, which
+    is stored on the client as a cookie.
+
+## Authentication
+
+    Authentication is the process of verifying the identity of a user. In ExpressJS, authentication ensures that only
+    authorized users can access certain resources
+
+# Implementing User Authentication in ExpressJS
+
+    There are two main ways to implement authentication in an ExpressJS application:
+
+    1. Session-Based Authentication (Uses cookies and sessions)
+    2. Token-Based Authentication (Uses JWT or OAuth tokens)
+
+    **The basic authentication flow:**
+
+        1. The user sends login credentials (email/password).
+        2. The server verifies the credentials against a database.
+        3. If valid, the server responds with a session (cookie) or a JWT token.
+        4. The client stores this session or token for subsequent requests.
+        5. For each request, the client sends the session/token for verification

@@ -16,22 +16,19 @@ export const getUsers = async (req, res) => {
 };
 
 export const createUser = async (req, res) => {
-  const { name, age, email } = req.body;
-  const newUser = new User({ name, age, email });
-  const existedUserWithEmail = await User.findOne({ email });
-
-  if (existedUserWithEmail) {
-    return res.status(400).json({ message: "The user already exists." }); // Use 400 Bad Request
-  }
-
   try {
+    const { name, age, email } = req.body;
+    const newUser = new User({ name, age, email });
+    const existedUserWithEmail = await User.findOne({ email });
+
+    if (existedUserWithEmail) {
+      return res.status(400).json({ message: "The user already exists." }); // Use 400 Bad Request
+    }
+
     await newUser.save();
     res.status(201).json({ message: "User added", data: newUser }); // Use 201 Created
   } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ message: "An error occurred while adding the user." });
+    res.status(500).json({ message: error.message });
   }
 };
 
